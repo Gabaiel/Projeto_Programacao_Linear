@@ -20,7 +20,7 @@ A = [] # Matriz dos coeficientes das restrições
 M = max(list(map(abs, c))) * 1000 # Big-M
 
 for i in range(0, m):
-    row 1 = list(map(int, list(input().split(" "))))
+    row = list(map(int, list(input().split(" "))))
     A.append(row)
 
 A = list(np.transpose(A))
