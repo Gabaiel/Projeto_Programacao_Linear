@@ -28,14 +28,14 @@ for i in range(0, m):
 
 A = list(np.transpose(A))
 
-   ## Aplicando o Big-M
-   #for i in range(m):
-   #    s = np.zeros(m)
-   #    s[i] = 1
-   #    A.append(list(s))
-   #    c.append(M)
-
-   #n += m
+# Aplicando o Big-M
+for i in range(m):
+    s = np.zeros(m)
+    s[i] = 1
+    A.append(list(s))
+    c.append(M)
+    
+n += m # Atualizando o número de variáveis
 
 A = list(np.transpose(A))
 
@@ -54,24 +54,26 @@ for i in range(0,len(A)) :
 STOP = False
 solucao_otima = False
 
+it=1 # só para contar as iterações
+
 # Fase II: 
 while not STOP:
-    print("Iteração")
+    print("Iteração", it) # só pra contar as iterações
+
     # Passo 1: calculando a solução básica
     x_b = np.linalg.solve(B, b)
 
-    B = list(np.transpose(B))
-
     # Passo 2.1: Calculando o vetor multiplicador simplex
-    Lambda = np.linalg.solve(B, c_b)
-    
     B = list(np.transpose(B))
+    
+    Lambda = np.linalg.solve(B, c_b)
 
     Lambda = list(np.transpose(Lambda))
 
     # Passo 2.2: # Calculando os custos reduzidos das variáveis não-básicas
     c_n_r = [] # Vetor dos custos reduzidos
     c_n_r_index = []
+
     A = list(np.transpose(A))
 
     for j in range(len(c_n)):
@@ -85,7 +87,6 @@ while not STOP:
         # A[k] entra na base
 
     # Passo 3: Teste de Otimalidade
-    print("Custos reduzidos:", C_n)
     if C_n >= 0:
         STOP = True
         solucao_otima = True
@@ -100,6 +101,8 @@ while not STOP:
     for idx, n in enumerate(N):
         if np.array_equal(n, A[k]):
             k = idx  # Índice da variável que entra na base
+
+    B = list(np.transpose(B))
 
     y = np.linalg.solve(B, a_k)
 
@@ -122,6 +125,8 @@ while not STOP:
     
         # B[l] sai da base
 
+    B = list(np.transpose(B))
+    
     # Armazenando as variáveis e custos que entram e saem da base
     A_b = B[l]
     A_c_b = c_b[l]
@@ -148,7 +153,9 @@ while not STOP:
         A[idx_b], A[idx_n] = A[idx_n], A[idx_b]
             
     A = list(np.transpose(A))
-    print(B,N,c_b,c_n,sep="\n \n")
+    B = list(np.transpose(B))
+    N = list(np.transpose(N))
+    it += 1
 
 # Resposta final
 if solucao_otima == True:
@@ -158,3 +165,5 @@ elif solucao_otima == False:
     print("O problema é ilimitado.")
 
 #################### O print deve estar no final (fora do loop) ou dentro do loop?
+#################### Tem que adicionar os valores da variaveis artificiais?
+#################### Tem que excluir o it e o print de iteração antes de enviar pra Kelly
