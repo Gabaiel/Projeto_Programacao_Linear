@@ -165,5 +165,5 @@ elif solucao_otima == False:
     print("O problema é ilimitado.")
 
 #################### O print deve estar no final (fora do loop) ou dentro do loop?
-#################### Tem que adicionar os valores da variaveis artificiais?
+#################### Tem que adicionar os valores da variaveis artificiais? Acho que tem que colocar e ainda indicar quais são as variáveis que ficam na base. Não tenho ctz
 #################### Tem que excluir o it e o print de iteração antes de enviar pra Kelly
