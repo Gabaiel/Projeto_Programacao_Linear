@@ -167,3 +167,5 @@ elif solucao_otima == False:
 #################### O print deve estar no final (fora do loop) ou dentro do loop?
 #################### Tem que adicionar os valores da variaveis artificiais? Acho que tem que colocar e ainda indicar quais são as variáveis que ficam na base. Não tenho ctz
 #################### Tem que excluir o it e o print de iteração antes de enviar pra Kelly
+#################### O pl2.in ta saindo xb = [1.4 0.2] mas era pra ser [1.4 0]
+#################### Tem que testar co os PL ilimitados
